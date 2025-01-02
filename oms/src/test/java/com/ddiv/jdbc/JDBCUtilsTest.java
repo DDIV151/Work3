@@ -12,19 +12,24 @@ public class JDBCUtilsTest extends TestCase {
     public void testGetConnection() throws SQLException {
         Connection con = JDBCUtils.getConnection();
         Statement stmt = con.createStatement();
-        if (stmt != null) {
-            //进行简单的增删改查测试
-            stmt.executeUpdate("drop table if exists test");
-            stmt.executeUpdate("create table if not exists test (id int primary key, name varchar(20))");
-            stmt.executeUpdate("insert into test values(1,'test')");
-            ResultSet rs = stmt.executeQuery("select * from test");
+        //进行简单的增删改查测试
+        try{
+            stmt.executeUpdate("drop table if exists test_java_get_connection");
+            stmt.executeUpdate("create table if not exists test_java_get_connection (id int primary key, name varchar(20))");
+            stmt.executeUpdate("insert into test_java_get_connection values(1,'test')");
+            ResultSet rs = stmt.executeQuery("select * from test_java_get_connection");
             if (rs.next()) {
                 if (!rs.getString("name").equals("test") || rs.getInt("id") != 1) {
                     throw new SQLException();
                 }
             } else
                 throw new SQLException();
+        } finally {
+            stmt.executeUpdate("drop table if exists test_java_get_connection");
+            stmt.close();
+            con.close();
         }
+
     }
 
     public void testClose() throws SQLException {
