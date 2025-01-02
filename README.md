@@ -991,3 +991,13 @@ connection.close();//很耗资源的
 
 ##  statement对象
 
+使用方法如上，其不能防止sql注入
+
+## PreparedStatement对象
+
+````java
+PrepareStatement st = connection.prepareStatement(sql);
+st.setObject(index,values);
+````
+
+可以防止sql注入，效率更好
