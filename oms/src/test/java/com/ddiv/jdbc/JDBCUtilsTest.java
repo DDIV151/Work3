@@ -13,7 +13,7 @@ public class JDBCUtilsTest extends TestCase {
         Connection con = JDBCUtils.getConnection();
         Statement stmt = con.createStatement();
         //进行简单的增删改查测试
-        try{
+        try {
             stmt.executeUpdate("drop table if exists test_java_get_connection");
             stmt.executeUpdate("create table if not exists test_java_get_connection (id int primary key, name varchar(20))");
             stmt.executeUpdate("insert into test_java_get_connection values(1,'test')");
