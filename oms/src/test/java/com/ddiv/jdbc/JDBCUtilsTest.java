@@ -37,7 +37,7 @@ public class JDBCUtilsTest extends TestCase {
         JDBCUtils.close(null, null, null);
         Connection con = JDBCUtils.getConnection();
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("select * from test");
+        ResultSet rs = stmt.executeQuery("show tables");
         JDBCUtils.close(con, null, null);
         JDBCUtils.close(con, stmt, null);
         JDBCUtils.close(con, stmt, rs);
