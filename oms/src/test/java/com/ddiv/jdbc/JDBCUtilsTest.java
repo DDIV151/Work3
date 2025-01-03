@@ -42,4 +42,5 @@ public class JDBCUtilsTest extends TestCase {
         JDBCUtils.close(con, stmt, null);
         JDBCUtils.close(con, stmt, rs);
     }
+
 }
